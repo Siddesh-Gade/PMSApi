@@ -16,6 +16,8 @@ namespace PMSWebApi.Data
 
         public DbSet<PMSWebApi.Models.Employees> Employees { get; set; } = default!;
         public DbSet<PMSWebApi.Models.Cycle> Cycle { get; set; } = default!;
+        public DbSet<PMSWebApi.Models.Ratings> Ratings { get; set; } = default!;
+        public DbSet<PMSWebApi.Models.KPIs> kPs { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,10 +26,14 @@ namespace PMSWebApi.Data
                 .HasOne(p => p.Employee)
                 .WithMany(e => e.KPIs)
                 .HasForeignKey(p => p.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
-            
+            modelBuilder.Entity<Rounds>()
+               .HasOne(p => p.Employee)
+               .WithMany(e => e.Rounds)
+               .HasForeignKey(p => p.EmployeeId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
-        public DbSet<PMSWebApi.Models.Ratings> Ratings { get; set; } = default!;
+        
     }
 }

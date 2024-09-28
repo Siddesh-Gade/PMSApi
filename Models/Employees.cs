@@ -15,5 +15,6 @@ namespace PMSWebApi.Models
         public int ManagerId { get; set; }
         public string LoginId { get; set; } = string.Empty;
         public ICollection<KPIs> KPIs { get; set; }
+        public ICollection<Rounds> Rounds { get; set; }
     }
 }

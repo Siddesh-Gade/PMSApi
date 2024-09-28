@@ -23,7 +23,9 @@ namespace PMSWebApi.Models
 
         public int ManagerOverallRating { get; set; }
 
+        public DateTime CreatedDate { get; set; }
 
+        public int RoundId { get; set; }
 
         [ForeignKey("Employees")]  // This indicates that EmployeeId is a foreign key
         public int EmployeeId { get; set; }  // Foreign key property

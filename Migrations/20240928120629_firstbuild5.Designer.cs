@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMSWebApi.Data;
 
@@ -11,9 +12,11 @@ using PMSWebApi.Data;
 namespace PMSWebApi.Migrations
 {
     [DbContext(typeof(PMSWebApiContext))]
-    partial class PMSWebApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240928120629_firstbuild5")]
+    partial class firstbuild5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,7 +136,7 @@ namespace PMSWebApi.Migrations
 
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("kPs");
+                    b.ToTable("KPIs");
                 });
 
             modelBuilder.Entity("PMSWebApi.Models.Ratings", b =>
@@ -156,32 +159,6 @@ namespace PMSWebApi.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("PMSWebApi.Models.Rounds", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ManagerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoundId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ManagerId");
-
-                    b.ToTable("Rounds");
-                });
-
             modelBuilder.Entity("PMSWebApi.Models.KPIs", b =>
                 {
                     b.HasOne("PMSWebApi.Models.Employees", "Employee")
@@ -201,30 +178,9 @@ namespace PMSWebApi.Migrations
                     b.Navigation("Manager");
                 });
 
-            modelBuilder.Entity("PMSWebApi.Models.Rounds", b =>
-                {
-                    b.HasOne("PMSWebApi.Models.Employees", "Employee")
-                        .WithMany("Rounds")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("PMSWebApi.Models.Employees", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Manager");
-                });
-
             modelBuilder.Entity("PMSWebApi.Models.Employees", b =>
                 {
                     b.Navigation("KPIs");
-
-                    b.Navigation("Rounds");
                 });
 #pragma warning restore 612, 618
         }

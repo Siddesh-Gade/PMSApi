@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMSWebApi.Data;
 
@@ -11,9 +12,11 @@ using PMSWebApi.Data;
 namespace PMSWebApi.Migrations
 {
     [DbContext(typeof(PMSWebApiContext))]
-    partial class PMSWebApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240928121238_firstbuild6")]
+    partial class firstbuild6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,7 +136,7 @@ namespace PMSWebApi.Migrations
 
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("kPs");
+                    b.ToTable("KPIs");
                 });
 
             modelBuilder.Entity("PMSWebApi.Models.Ratings", b =>
