@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PMSWebApi.Models;
+using PMSWebApi.ViewModels;
 
 namespace PMSWebApi.Data
 {
@@ -18,6 +15,7 @@ namespace PMSWebApi.Data
         public DbSet<PMSWebApi.Models.Cycle> Cycle { get; set; } = default!;
         public DbSet<PMSWebApi.Models.Ratings> Ratings { get; set; } = default!;
         public DbSet<PMSWebApi.Models.KPIs> kPs { get; set; } = default!;
+        public DbSet<PMSWebApi.Models.Rounds> Rounds { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +31,11 @@ namespace PMSWebApi.Data
                .WithMany(e => e.Rounds)
                .HasForeignKey(p => p.EmployeeId)
                .OnDelete(DeleteBehavior.Restrict);
+            
         }
+        public DbSet<PMSWebApi.ViewModels.RoundsVM> RoundsVM { get; set; } = default!;
+        
+        
         
     }
 }

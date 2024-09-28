@@ -2,10 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using PMSWebApi.Data;
 using PMSWebApi.Controllers;
+using PMSWebApi.Filters;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PMSWebApiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PMSWebApiContext") ?? throw new InvalidOperationException("Connection string 'PMSWebApiContext' not found.")));
-
+// Add AutoMapper service
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 // Add services to the container.
 
 builder.Services.AddControllers();

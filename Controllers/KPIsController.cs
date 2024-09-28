@@ -12,47 +12,47 @@ namespace PMSWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class KPIsController : ControllerBase
     {
         private readonly PMSWebApiContext _context;
 
-        public EmployeesController(PMSWebApiContext context)
+        public KPIsController(PMSWebApiContext context)
         {
             _context = context;
         }
 
-        // GET: api/Employees
+        // GET: api/KPIs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employees>>> GetEmployees()
+        public async Task<ActionResult<IEnumerable<KPIs>>> GetkPs()
         {
-            return await _context.Employees.ToListAsync();
+            return await _context.kPs.ToListAsync();
         }
 
-        // GET: api/Employees/5
+        // GET: api/KPIs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Employees>> GetEmployees(int id)
+        public async Task<ActionResult<KPIs>> GetKPIs(int id)
         {
-            var employees = await _context.Employees.FindAsync(id);
+            var kPIs = await _context.kPs.FindAsync(id);
 
-            if (employees == null)
+            if (kPIs == null)
             {
                 return NotFound();
             }
 
-            return employees;
+            return kPIs;
         }
 
-        // PUT: api/Employees/5
+        // PUT: api/KPIs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployees(int id, Employees employees)
+        public async Task<IActionResult> PutKPIs(int id, KPIs kPIs)
         {
-            if (id != employees.id)
+            if (id != kPIs.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(employees).State = EntityState.Modified;
+            _context.Entry(kPIs).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PMSWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmployeesExists(id))
+                if (!KPIsExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PMSWebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
+        // POST: api/KPIs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Employees>> PostEmployees(Employees employees)
+        public async Task<ActionResult<KPIs>> PostKPIs(KPIs kPIs)
         {
-            _context.Employees.Add(employees);
+            _context.kPs.Add(kPIs);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEmployees", new { id = employees.id }, employees);
+            return CreatedAtAction("GetKPIs", new { id = kPIs.Id }, kPIs);
         }
 
-        // DELETE: api/Employees/5
+        // DELETE: api/KPIs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployees(int id)
+        public async Task<IActionResult> DeleteKPIs(int id)
         {
-            var employees = await _context.Employees.FindAsync(id);
-            if (employees == null)
+            var kPIs = await _context.kPs.FindAsync(id);
+            if (kPIs == null)
             {
                 return NotFound();
             }
 
-            _context.Employees.Remove(employees);
+            _context.kPs.Remove(kPIs);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool EmployeesExists(int id)
+        private bool KPIsExists(int id)
         {
-            return _context.Employees.Any(e => e.id == id);
+            return _context.kPs.Any(e => e.Id == id);
         }
     }
 }
