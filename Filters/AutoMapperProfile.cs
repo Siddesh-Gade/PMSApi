@@ -12,6 +12,8 @@ namespace PMSWebApi.Filters
             CreateMap<EmployeeVM, Employees>();
             CreateMap<Rounds, RoundsVM>();
             CreateMap<RoundsVM, Rounds>();
+            CreateMap<KPIs, KpiVM>();
+            CreateMap<KpiVM, KPIs>();
         }
     }
 }

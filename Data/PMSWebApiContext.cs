@@ -32,10 +32,6 @@ namespace PMSWebApi.Data
                .HasForeignKey(p => p.EmployeeId)
                .OnDelete(DeleteBehavior.Restrict);
             
-        }
-        public DbSet<PMSWebApi.ViewModels.RoundsVM> RoundsVM { get; set; } = default!;
-        
-        
-        
+        }   
     }
 }
