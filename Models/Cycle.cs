@@ -7,7 +7,6 @@ namespace PMSWebApi.Models
     {
         [Key]  // Marks this field as the primary key
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public int CycleId { get; set; }
         public string CycleName { get; set; } = string.Empty;
         public int IsActive { get; set; }

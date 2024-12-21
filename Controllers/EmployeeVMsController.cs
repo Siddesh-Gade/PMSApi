@@ -33,17 +33,29 @@ namespace PMSWebApi.Controllers
         }
 
         // GET: api/EmployeeVMs/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<EmployeeVM>> GetEmployeeVM(int id)
+        [HttpGet("id/{employeeId}")]
+        public async Task<ActionResult<EmployeeVM>> GetEmployeeVM(int employeeId)
         {
-            var employees = await _context.Employees.FindAsync(id);
+            var employees = await _context.Employees.FindAsync(employeeId);
 
             if (employees == null)
             {
                 return NotFound();
             }
             var employeeVMs = _mapper.Map<EmployeeVM>(employees);
-            return employeeVMs;
+            return Ok(employeeVMs);
+        }
+
+        [HttpGet("email/{emailId}")]
+        public async Task<ActionResult<EmployeeVM>> GetEmployeeLoginEmail(string emailId)
+        {
+            var employees = await _context.Employees.FirstAsync(x => x.LoginId == emailId);
+            if(employees == null)
+            {
+                return NotFound();
+            }
+            var employeesVM = _mapper.Map<EmployeeVM>(employees);
+            return Ok(employeesVM);
         }
 
         // PUT: api/EmployeeVMs/5
@@ -51,7 +63,7 @@ namespace PMSWebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployeeVM(int id, EmployeeVM employeeVM)
         {
-            if (id != employeeVM.id)
+            if (id != employeeVM.EmployeeId)
             {
                 return BadRequest();
             }
@@ -98,7 +110,7 @@ namespace PMSWebApi.Controllers
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEmployeeVM), new { id = employee.id }, employeeVM);
+            return CreatedAtAction(nameof(GetEmployeeVM), new { id = employee.EmployeeId }, employeeVM);
         }
 
         // DELETE: api/EmployeeVMs/5
@@ -119,7 +131,7 @@ namespace PMSWebApi.Controllers
 
         private bool EmployeeVMExists(int id)
         {
-            return _context.Employees.Any(e => e.id == id);
+            return _context.Employees.Any(e => e.EmployeeId == id);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace PMSWebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoundsVM(int id, RoundsVM roundsVM)
         {
-            if (id != roundsVM.Id)
+            if (id != roundsVM.RoundId)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace PMSWebApi.Controllers
             _context.Rounds.Add(rounds);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRoundsVM", new { id = roundsVM.Id }, roundsVM);
+            return CreatedAtAction("GetRoundsVM", new { id = roundsVM.RoundId }, roundsVM);
         }
 
         // DELETE: api/RoundsVMs/5
@@ -104,7 +104,7 @@ namespace PMSWebApi.Controllers
 
         private bool RoundsVMExists(int id)
         {
-            return _context.Rounds.Any(e => e.Id == id);
+            return _context.Rounds.Any(e => e.RoundId == id);
         }
     }
 }

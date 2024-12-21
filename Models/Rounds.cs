@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PMSWebApi.Models
 {
     public class Rounds
     {
-        public int Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoundId { get; set; }
 
         [ForeignKey("Employees")]  // This indicates that EmployeeId is a foreign key

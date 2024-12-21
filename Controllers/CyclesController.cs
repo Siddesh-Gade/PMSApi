@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PMSWebApi.Data;
 using PMSWebApi.Models;
@@ -47,7 +42,7 @@ namespace PMSWebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCycle(int id, Cycle cycle)
         {
-            if (id != cycle.Id)
+            if (id != cycle.CycleId)
             {
                 return BadRequest();
             }
@@ -81,7 +76,7 @@ namespace PMSWebApi.Controllers
             _context.Cycle.Add(cycle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCycle", new { id = cycle.Id }, cycle);
+            return CreatedAtAction("GetCycle", new { id = cycle.CycleId }, cycle);
         }
 
         // DELETE: api/Cycles/5
@@ -102,7 +97,7 @@ namespace PMSWebApi.Controllers
 
         private bool CycleExists(int id)
         {
-            return _context.Cycle.Any(e => e.Id == id);
+            return _context.Cycle.Any(e => e.CycleId == id);
         }
     }
 }

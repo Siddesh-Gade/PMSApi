@@ -7,8 +7,6 @@ namespace PMSWebApi.Models
     public class Employees
     {
         [Key]  // Marks this field as the primary key
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
         public int EmployeeId { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;

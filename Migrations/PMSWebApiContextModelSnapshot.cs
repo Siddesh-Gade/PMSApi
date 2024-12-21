@@ -17,21 +17,18 @@ namespace PMSWebApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("PMSWebApi.Models.Cycle", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CycleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CycleId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CycleId"));
 
                     b.Property<string>("CycleName")
                         .IsRequired()
@@ -43,21 +40,18 @@ namespace PMSWebApi.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("CycleId");
 
                     b.ToTable("Cycle");
                 });
 
             modelBuilder.Entity("PMSWebApi.Models.Employees", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -74,7 +68,7 @@ namespace PMSWebApi.Migrations
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
                 });
@@ -158,11 +152,11 @@ namespace PMSWebApi.Migrations
 
             modelBuilder.Entity("PMSWebApi.Models.Rounds", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RoundId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoundId"));
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -170,10 +164,7 @@ namespace PMSWebApi.Migrations
                     b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoundId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("RoundId");
 
                     b.HasIndex("EmployeeId");
 
